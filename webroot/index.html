@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ProtonDB community API</title>
+	<style>
+	body {
+		font-family: sans-serif;
+	}
+	
+	code, h2, ul li {
+		font-family: monospace;
+	}
+	
+	ul li code {
+		font-weight: bold;
+	}
+	</style>
+</head>
+<body>
+	<h1> Welcome to my unofficial ProtonDB API! </h1>
+	<p> This project came from <a href="https://www.reddit.com/r/linux_gaming/comments/9tabd1/protondb_report_data_now_exported_to_github_for/e8vctt3">this reddit thread</a> following the release of the ProtonDB database under the Open Database License. </p>
+	<p> This server checks the <a href="https://github.com/bdefore/protondb-data">GitHub repository</a> every 30 minutes and merges the provided JSON file. </p>
+	
+	<h1> API "documentation" </h1>
+	<p> I'll improve later on if the project grows. I'm expecting this to be short lived until ProtonDB releases an API of their own. </p>
+	
+	<h2>GET /games/</h2>
+	<p> Lists all the games we have discovered so far. Returns an array of objects with these fields in it: </p>
+	<ul>
+		<li> <code>appId</code> </li>
+		<li> <code>title</code> </li>
+	</ul>
+	
+	<h2>GET /games/&lt;appId&gt;/reports/</h2>
+	<p> Lists all reports for a given game (by Valve's <code>appId</code>), in reverse timestamp order. Returns an array of objects with these fields in it: </p>
+	<ul>
+		<li> <code>id</code> My own local ID of this report, as upstream doesn't share theirs.</li>
+		<li> <code>appId</code> The game ID for this report. Redundant for uniformity's sake. </li>
+		<li> <code>timestamp</code> </li>
+		<li> <code>rating</code> </li>
+		<li> <code>notes</code> </li>
+		<li> <code>os</code> </li>
+		<li> <code>gpuDriver</code> </li>
+		<li> <code>specs</code> </li>
+		<li> <code>protonVersion</code> </li>
+	</ul>
+	
+	<h1> Code and contributions </h1>
+	<p> The code for this website is available on <a href="https://github.com/maxpoulin64/protondb-api">GitHub</a>. </p> 
+	
+	
+	<h1> Uncompressed data set </h1>
+	<p> As <a href="https://www.reddit.com/r/linux_gaming/comments/9tabd1/protondb_report_data_now_exported_to_github_for/e8wmhzj/?context=1">requested</a>, this server also hosts the <a href="/reports.json">uncompressed JSON</a>. </p>
+</body>
+</html>

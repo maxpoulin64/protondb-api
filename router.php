@@ -34,9 +34,8 @@ $R->get('^/games/?$', function() {
 
 $R->get('^/games/([0-9]+)/reports/?$', function($appId) {
 	$db = connectDB();
-	// no point setting up the whole prepared queries for a one-off at the moment
-	$query = $db->query("SELECT * FROM `reports` WHERE `appId`=$appId ORDER BY `timestamp` DESC");
-	$query->execute();
+	$query = $db->prepare("SELECT * FROM `reports` WHERE `appId`=:appId ORDER BY `timestamp` DESC");
+	$query->execute(['appId' => $appId]);
 	api_return_json($query->fetchAll(PDO::FETCH_ASSOC));
 });
 

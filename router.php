@@ -25,14 +25,14 @@ function api_return_json($data, $status = 200) {
 // Process API requests
 $R = new Router();
 
-$R->get('^/games/$', function() {
+$R->get('^/games/?$', function() {
 	$db = connectDB();
 	$query = $db->query('SELECT `appId`, `title` FROM `games` ORDER BY `appId` ASC');
 	$query->execute();
 	api_return_json($query->fetchAll(PDO::FETCH_ASSOC));
 });
 
-$R->get('^/games/([0-9]+)/reports/$', function($appId) {
+$R->get('^/games/([0-9]+)/reports/?$', function($appId) {
 	$db = connectDB();
 	// no point setting up the whole prepared queries for a one-off at the moment
 	$query = $db->query("SELECT * FROM `reports` WHERE `appId`=$appId ORDER BY `timestamp` DESC");

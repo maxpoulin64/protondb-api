@@ -119,7 +119,7 @@ function merge_upstream_database($db, $jsondb) {
 		}
 		
 		// Skip known reports
-		if((int)$report['timestamp'] < $last_ts) continue;
+		if((int)$report['timestamp'] <= $last_ts) continue;
 		
 		// Add games as needed
 		if(!in_array((int)$report['appId'], $known_appIds)) {
@@ -130,6 +130,8 @@ function merge_upstream_database($db, $jsondb) {
 		$add_report->execute(filter_array_keys($report, $report_fields));
 		$new_ts = max($new_ts, (int)$report['timestamp']);
 	}
+	
+	update_timestamp($db, $new_ts);
 }
 
 

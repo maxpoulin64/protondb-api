@@ -13,7 +13,7 @@ CREATE TABLE `reports` (
   `os` varchar(255) DEFAULT NULL,
   `gpuDriver` varchar(255) DEFAULT NULL,
   `specs` varchar(255) DEFAULT NULL,
-  `protonVersion` varchar(16) DEFAULT NULL,
+  `protonVersion` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `appId` (`appId`),
   CONSTRAINT `game` FOREIGN KEY (`appId`) REFERENCES `games` (`appId`) ON DELETE CASCADE

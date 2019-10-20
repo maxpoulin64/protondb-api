@@ -1,4 +1,5 @@
 <?php
+ini_set('memory_limit', '512M');
 require_once __DIR__.'/../core.php';
 
 /**
